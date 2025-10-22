@@ -1,4 +1,4 @@
-cars = {
+CARS = {
     ("mercedes", "s"): {
         "цена": 8500000,
         "двигатель": 3.0,
@@ -98,23 +98,29 @@ cars = {
 }
 
 
-for car_key in cars:
-    cars[car_key].update({"рассрочка": True})
-    if car_key==("porsche", "911"):
-        cars[car_key].update({"рассрочка": False})
-
-
-
-katalog = []
-katalog.append(cars)
-
-param = "выпуск"
-kriteriy = int(input("Введите год выпуска 2015-2024: "))
-
 def prepare(katalog, param, kriteriy):
     for cars_dict in katalog:
         for car_key, car_info in cars_dict.items():
             if car_info.get(param) == kriteriy:
                 print(car_key, car_info)
 
-prepare(katalog, param, kriteriy)
+
+def main():
+    for car_key in CARS:
+        CARS[car_key].update({"рассрочка": True})
+    CARS[("porsche", "911")]["рассрочка"] = False
+
+    try:
+        param = "выпуск"
+        kriteriy = int(input("Введите год выпуска 2015-2024: "))
+        
+        if 2015 <= kriteriy <= 2024:
+            prepare(CARS, param, kriteriy)
+        else:
+            print("Год должен быть в диапазоне 2015-2024")
+    except ValueError:
+        print("Ошибка: введите целое число")
+
+
+if __name__ == "__main__":
+    main()
