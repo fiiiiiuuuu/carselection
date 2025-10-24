@@ -99,10 +99,9 @@ CARS = {
 
 
 def prepare(katalog, param, kriteriy):
-    for cars_dict in katalog:
-        for car_key, car_info in cars_dict.items():
-            if car_info.get(param) == kriteriy:
-                print(car_key, car_info)
+    for car_key, car_info in katalog.items():
+        if car_info.get(param) == kriteriy:
+            print(f"{car_key[0]} {car_key[1]}: {car_info}")
 
 
 def main():
